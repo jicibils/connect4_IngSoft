@@ -1,0 +1,10 @@
+*.class
+*.o
+*.doc#
+*.odt#
+.~lock*
+.gitignore~
+*.properties
+
+/**/target
+/*.class

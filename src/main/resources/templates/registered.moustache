@@ -1,0 +1,188 @@
+			<!-- registered.moustache -->
+
+
+<html>
+	<head>
+		<style type="text/css">
+			[required]{
+				border-color: green;
+				box-shadow: 0px 0px 5px green;
+				border-radius: 20px 10px 
+			}
+			:invalid{
+				border-color: red;
+				box-shadow: 0px 0px 10px gray;				
+				animation: pulso 2s;
+				-webkit-animation: pulso 2s;
+				animation-iteration-count:infinite;
+				-webkit-animation-iteration-count:infinite;
+			}
+
+			@keyframes pulso{
+				0%{box-shadow: 0px 0px 5px red;}
+				50%{box-shadow: 0px 0px 25px red;}
+				100%{box-shadow: 0px 0px 5px red;}
+			}
+			@-webkit-keyframes pulso{
+				0%{-webkit-box-shadow: 0px 0px 5px red;}
+				50%{-webkit-box-shadow: 0px 0px 25px red;}
+				100%{-webkit-box-shadow: 0px 0px 5px red;}
+			}
+
+
+		</style>	
+		<style type="text/css">
+		p{			
+			color:black;
+			text-shadow: 0px 0px 10px gray;
+		    text-align:center;
+			font-size: 15px;
+			font-family: cursive;
+			}
+
+		</style>
+
+		<style type="text/css">
+			[requiredBoton]{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
+
+		<style type="text/css">
+			[requiredForm]{
+				border-color: white;
+				box-shadow: 0px 0px 10px white;
+				animation: pul 2s;
+				-webkit-animation: pul 2s;
+				animation-iteration-count:infinite;
+				-webkit-animation-iteration-count:infinite;
+			}
+
+			@keyframes pul{
+				0%{box-shadow: 0px 0px 5px white;}
+				50%{box-shadow: 0px 0px 25px white;}
+				100%{box-shadow: 0px 0px 5px white;}
+			}
+			@-webkit-keyframes pul{
+				0%{-webkit-box-shadow: 0px 0px 5px white;}
+				50%{-webkit-box-shadow: 0px 0px 25px white;}
+				100%{-webkit-box-shadow: 0px 0px 5px white;}
+			}
+
+		</style>	
+		<style type="text/css">
+			#logo{			
+			background:rgb(200,255,200);
+			
+			top:-50%;
+			
+			color:white;
+			text-align:center;
+			font-size: 100px;
+			text-shadow: 0px 0px 10px white ;
+				width:500px;
+				height:120px;
+				border: 2px solid white;
+				border-radius: 0px 15px 0px 15px;
+				box-shadow: 0px 0px 15px black;
+				font-family: Amaze;
+				font-weight: bold;
+				overflow:hidden;
+	background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black), to(green));
+			transition:width 2s, height 2s;
+			-webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+			-o-transition:width 2s, height 2s, -o-transform 2s;
+			}
+			#logo:hover{
+			width:700px;
+			height:120px;
+			transform:rotate(360deg);
+			-webkit-transform:rotate(360deg);
+			-o-transform:rotate(360deg);
+			
+			}
+		</style>
+		<style type="text/css">
+		#names{			
+			color:black;
+			text-shadow: 0px 0px 10px white;
+		    text-align:center;
+			font-size: 25px;
+			font-family: Vladimir Script;
+			animation: parpadeo 2s;
+			-webkit-animation: parpadeo 2s;
+			animation-iteration-count:infinite;
+			-webkit-animation-iteration-count:infinite;
+			}
+			@keyframes parpadeo{
+				0%{text-shadow: 0px 0px 5px black;}
+				50%{text-shadow: 0px 0px 25px black;}
+				100%{text-shadow: 0px 0px 5px black;}
+			}
+			@-webkit-keyframes parpadeo{
+				0%{-webkit-text-shadow: 0px 0px 5px black;}
+				50%{-webkit-text-shadow: 0px 0px 25px black;}
+				100%{-webkit-text-shadow: 0px 0px 5px black;}
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<center>
+			<div id="logo">
+				Connect 4
+			</div>
+		</center>	
+
+		<form action="/registrar" method="POST" requiredForm>
+			<br><br>
+			<p style="text-align:center"><i> Nick: <i><br>
+				<input type="text" name="nick" required>
+
+				<p style="text-align:center"><i> Nombre: <i><br>
+				<input type="text" name="nombre" required>
+
+				<p style="text-align:center"><i> Apellido: <i><br>
+				<input type="text" name="apellido" required>
+
+				<p style="text-align:center"><i> E-mail: <i><br>
+				<input type="email" name="e-mail" required>
+
+				<p style="text-align:center"><i> Contraseña: <i><br>
+				<input type="password" name="pass" required>
+
+				<p style="text-align:center"><i> Dni: <i><br>
+				<input type="text" name="dni" required>
+
+				<p style="text-align:center"><i> Edad: <i><br>
+				<input type="text" name="edad" required>
+
+				<br><br>
+				<input type="submit" value="Registrarse" requiredBoton>
+		</form>
+
+		<form action="/volverConnect4">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+			</p>
+		</form>
+		<br><br>
+		<div id="names">
+			<i>" Cibils - Dominguez - Juarez "<i>
+		</div>
+	</body>
+</html>

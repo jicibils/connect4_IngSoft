@@ -1,0 +1,179 @@
+			<!-- rank.moustache -->
+
+<html>
+	<head>
+
+		<style type="text/css">
+			[requiredBoton]{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
+		<style type="text/css">
+		p{			
+			color:black;
+			text-shadow: 0px 0px 10px gray;
+		    text-align:center;
+			font-size: 15px;
+			font-family: cursive;
+			}
+
+		</style>
+		<style type="text/css">
+			#logo{			
+			background:rgb(200,255,200);
+			
+			top:-50%;
+			
+			color:white;
+			text-align:center;
+			font-size: 100px;
+			text-shadow: 0px 0px 10px white ;
+				width:500px;
+				height:120px;
+				border: 2px solid white;
+				border-radius: 0px 15px 0px 15px;
+				box-shadow: 0px 0px 15px black;
+				font-family: Amaze;
+				font-weight: bold;
+				overflow:hidden;
+	background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black), to(green));
+			transition:width 2s, height 2s;
+			-webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+			-o-transition:width 2s, height 2s, -o-transform 2s;
+			}
+			#logo:hover{
+			width:700px;
+			height:120px;
+			transform:rotate(360deg);
+			-webkit-transform:rotate(360deg);
+			-o-transform:rotate(360deg);
+			
+			}
+		</style>
+		<style type="text/css">
+		#names{			
+			color:black;
+			text-shadow: 0px 0px 10px white;
+		    text-align:center;
+			font-size: 25px;
+			font-family: Vladimir Script;
+			animation: parpadeo 2s;
+			-webkit-animation: parpadeo 2s;
+			animation-iteration-count:infinite;
+			-webkit-animation-iteration-count:infinite;
+			}
+			@keyframes parpadeo{
+				0%{text-shadow: 0px 0px 5px black;}
+				50%{text-shadow: 0px 0px 25px black;}
+				100%{text-shadow: 0px 0px 5px black;}
+			}
+			@-webkit-keyframes parpadeo{
+				0%{-webkit-text-shadow: 0px 0px 5px black;}
+				50%{-webkit-text-shadow: 0px 0px 25px black;}
+				100%{-webkit-text-shadow: 0px 0px 5px black;}
+			}
+
+		</style>
+
+		<style>
+			table {
+			    width:100%;
+			}
+			table, th, td {
+			    border: 1px solid black;
+			    border-collapse: collapse;
+			}
+			th, td {
+			    padding: 5px;
+			    text-align: center;
+			}
+			table#t01 tr:nth-child(even) {
+			    background-color: #eee;
+			}
+			table#t01 tr:nth-child(odd) {
+			   background-color:#fff;
+			}
+			table#t01 th	{
+			    background-color: black;
+			    color: white;
+			}
+			</style>
+			<style>
+				h2{
+					color:black;
+				    text-align:center;
+					font-size: 40px;
+					font-family: Amaze;
+				}
+			</style>
+			<style>
+				th{
+					color:black;
+				    text-align:center;
+					font-size: 25px;
+					font-family: Amaze;
+				}
+			</style>
+	</head>
+	<body>
+
+		<center>
+			<div id="logo">
+				Connect 4
+			</div>
+		</center>	
+
+		<br><br>
+		<h2 style="text-align:center">Ranking</h2>
+		<br>
+
+
+	<table id="t01">
+	  <tr>
+	    
+	    <th>Pos</th>
+	    <th>Points</th>
+	    <th>Id Player</th>
+	    <th>PG</th>
+	    <th>PE</th>
+	    <th>PP</th>
+	    <th>PJ</th>
+	  </tr>
+
+		{{#pos}}
+		<tr>
+			<td> {{toStringPos}}</td>
+			<td> {{toStringPoint}}</td>
+			<td> {{toStringUser}}</td>
+			<td> {{toStringPG}}</td>
+			<td> {{toStringPE}}</td>
+			<td> {{toStringPP}}</td>
+			<td> {{toStringPJ}}</td>
+		</tr>
+		{{/pos}}
+	</table>		
+
+		
+	<form action="/volverConnect4">
+		<p style="text-align:center"><br>
+			<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+		</p>
+	</form>
+
+	<br><br>
+	<div id="names">
+		<i>" Cibils - Dominguez - Juarez "<i>
+	</div>
+	</body>
+</html>

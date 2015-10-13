@@ -1,0 +1,32 @@
+Proyecto AyD 2015
+
+	Users story:
+
+			“Como invitado quiero dar mi nombre para jugar una partida”
+
+			“Como jugador registrado quiero tener acceso a estadísticas de mis juegos y un ranking general de los usuarios registrados”
+
+			“Como usuario registrado quiero sumar puntaje especial por partidas ganadas consecutivas”
+
+			“Como usuario registrado quiero modos de juego, por ejemplo: el mejor de 5, el mejor de 3, simple”
+
+			“Como usuario registrado quiero personalizar el color de fichas y fondo”
+
+			“Como usuario registrado quiero ver las estadísticas con respecto a otro usuario registrado” (ver cuantas veces jugaste con otro usuario, las derrotas, las victorias, etc)
+
+			“Como usuario registrado quiero poder desafiar a usuarios de ranking similar al mio”
+
+			“Como usuario registrado quiero que se pueda cambiar la contraseña”
+
+	Herramientas :
+			*Maven
+			*Schema
+			*ActiveJDBC
+			*Junitx
+
+
+	MBP:   (mínimos requerimientos para aprobar el proyecto)
+
+			* "Como usuario quiero ver mi ranking"
+			* "Como jugador quiero saber si gane una vez que puse una ficha"
+
