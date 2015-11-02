@@ -194,7 +194,7 @@
 
 
 				
-		<form action="/play" >
+		<form action="/play"  id="form1">
 			<style>
 					table, th, td {
 						border: 2px solid black;
@@ -225,7 +225,7 @@
 			</p>
 		</form>	
 		<form>	
-			
+
    		<p style="text-align:center">
 			<caption>{{us1}} vs {{us2}}</caption>
 			// <i> Turno: {{turno}}<i>	
