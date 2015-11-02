@@ -2,6 +2,7 @@
 
 <html>
 	<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<style type="text/css">
 			[requiredBoton]{
 				background:black;
@@ -226,6 +227,29 @@
 		</form>	
 		<form>	
 
+
+		<script type="text/javascript">	
+			$("document").ready(function(x){
+				$("#form1").on("submit",function(){
+					alert("hola");
+
+				});
+				// x.preventDefault();
+				// $("#form1").ajax({
+				// 	url:"/play";
+				// 	data:{column:"1", game_id:"x"};
+				// 	method:"post"
+				// }).done(function(data)){
+				// 	alert("hola");
+				// }
+				// return false;
+			})
+		</script>
+
+
+
+
+
    		<p style="text-align:center">
 			<caption>{{us1}} vs {{us2}}</caption>
 			// <i> Turno: {{turno}}<i>	
@@ -252,7 +276,7 @@
 
 		</form>
 		<div id="names">
-			<i>" Cibils - Dominguez - Juarez "<i>
+			<i>" Cibils - Dominguez - Bertorello "<i>
 		</div>
 	</body>
 </html>
