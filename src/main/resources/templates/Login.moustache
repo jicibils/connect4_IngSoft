@@ -1,15 +1,10 @@
-			<!-- Connect4.moustache -->
+			<!-- Login.moustache -->
 
 
 <html>
 	<head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script>
-			// $("document").ready(function(){
-			// alert("hello");	
-			// }) 
-		</script>
 
 		<style type="text/css">
 			[requiredBoton]{
@@ -115,46 +110,30 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 			</div>
 		</center>	
 		<br><br>
-		<form action="/play" method = "POST">
-		<p style="text-align:center"><i> Player 1 Name: <i><br>
-			<select name="comboboxUs1" requiredBoton>
-				{{#users}}
-				<option value="{{toString}}"> {{toString}}</option>
-				{{/users}}
-			</select>
-		</p>
 
-		<p style="text-align:center"><i> Player 2 Name: <i><br>
-			<select name="comboboxUs2" requiredBoton>
-				{{#users}}
-				<option value="{{toString}}"> {{toString}}</option>
-				{{/users}}
-			</select>
-		</p>
+		<form action="/Connect4">
 			<br><br>
-			<br><br>
+			<p style="text-align:center"><i> Usuario: <i><br>
+				<input type="text" name="nick" required>
+
+				<p style="text-align:center"><i> Contraseña: <i><br>
+				<input type="password" name="pass" required>
+
+				<br><br>
+				<input type="submit" value="Iniciar Sesión" requiredBoton>
+		</form>
+
+		<form action="/registered">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Jugar" name="play" requiredBoton>
+				<input type="submit" value="Registrarse" name="registered" requiredBoton>
 			</p>
 		</form>
 
-		<form action="/rank">
-			<p style="text-align:center"><br>
-				<input type="submit" value="Ver Ranking" name="rank" requiredBoton>
-			</p>
-		</form>
-	
-		<form action="/load">
-			<p style="text-align:center"><br>
-				<input type="submit" value="Cargar Partida" name="load" requiredBoton>
-			</p>
-		</form>
-
-		<form action="/bye">
-			<p style="text-align:center"><br>
-				<input type="submit" value="Salir" name="bye" requiredBoton>
-			</p>
-		</form>
+		<br><br>
+		<br><br>
+		<br><br>
+		<br><br>
+		<br><br>
 
 		<div id="names">
 			<i>" Cibils - Dominguez - Bertorello "<i>

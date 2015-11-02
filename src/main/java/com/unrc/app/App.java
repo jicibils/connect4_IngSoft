@@ -43,6 +43,12 @@ public class App{
             after((request, response) -> {
                   Base.close();
             });        
+
+              //ingresa al Login
+            get("/Login", (request, response) -> {
+                  return new ModelAndView(null, "Login.moustache");                                   
+            }, new MustacheTemplateEngine());
+
               //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
@@ -224,12 +230,6 @@ public class App{
                    return new ModelAndView(attributes, "play.moustache");
                   }, new MustacheTemplateEngine());
 
-      
-	
-
-	 
-
-
  
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
@@ -259,6 +259,11 @@ public class App{
                   attributes.put("us2",player2);
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
+
+            get("/volverLogin", (request, response) -> {
+                  return new ModelAndView(null, "Login.moustache");                                   
+            }, new MustacheTemplateEngine());
+
 
             post("/loadplayer", (request, response) -> {
                   

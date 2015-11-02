@@ -176,11 +176,12 @@
 				<input type="submit" value="Registrarse" requiredBoton>
 		</form>
 
-		<form action="/volverConnect4">
+		<form action="/volverLogin">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+				<input type="submit" value="Volver" name="volverLogin" requiredBoton>
 			</p>
 		</form>
+		
 		<br><br>
 		<div id="names">
 			<i>" Cibils - Dominguez - Bertorello "<i>
