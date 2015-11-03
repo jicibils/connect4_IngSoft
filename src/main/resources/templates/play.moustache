@@ -234,15 +234,15 @@
 					alert("hola");
 
 				});
-				// x.preventDefault();
-				// $("#form1").ajax({
-				// 	url:"/play";
-				// 	data:{column:"1", game_id:"x"};
-				// 	method:"post"
-				// }).done(function(data)){
-				// 	alert("hola");
-				// }
-				// return false;
+				x.preventDefault();
+				$("#form1").ajax({
+					url:"/play";
+					data:{column:"1", game_id:"x"};
+					method:"post"
+				}).done(function(data)){
+					alert("hola");
+				}
+				return false;
 			})
 		</script>
 

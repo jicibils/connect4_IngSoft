@@ -111,7 +111,7 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		</center>	
 		<br><br>
 
-		<form action="/Connect4">
+		<form action="/Connect4" id="checkUsyPass">
 			<br><br>
 			<p style="text-align:center"><i> Usuario: <i><br>
 				<input type="text" name="nick" required>
@@ -122,6 +122,23 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 				<br><br>
 				<input type="submit" value="Iniciar Sesión" requiredBoton>
 		</form>
+		<script type="text/javascript">	
+			// $("document").ready(function(x){
+			// 	$("#checkUsyPass").on("submit",function(){
+					// alert("hola");
+
+				// });
+				// x.preventDefault();
+				// $("#form1").ajax({
+				// 	url:"/play";
+				// 	data:{column:"1", game_id:"x"};
+				// 	method:"post"
+				// }).done(function(data)){
+				// 	alert("hola");
+				// }
+				// return false;
+			// })
+		</script>
 
 		<form action="/registered">
 			<p style="text-align:center"><br>

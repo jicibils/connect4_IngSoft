@@ -116,15 +116,11 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		</center>	
 		<br><br>
 		<form action="/play" method = "POST">
-		<p style="text-align:center"><i> Player 1 Name: <i><br>
-			<select name="comboboxUs1" requiredBoton>
-				{{#users}}
-				<option value="{{toString}}"> {{toString}}</option>
-				{{/users}}
-			</select>
+		<p style="text-align:center"><i> Conectado como: <i><br>
+			<caption>{{us1}}</caption>
 		</p>
 
-		<p style="text-align:center"><i> Player 2 Name: <i><br>
+		<p style="text-align:center"><i> Rival: <i><br>
 			<select name="comboboxUs2" requiredBoton>
 				{{#users}}
 				<option value="{{toString}}"> {{toString}}</option>
@@ -150,9 +146,9 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 			</p>
 		</form>
 
-		<form action="/bye">
+		<form action="/volverLogin">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Salir" name="bye" requiredBoton>
+				<input type="submit" value="Cerrar Sesión" name="volverLogin" requiredBoton>
 			</p>
 		</form>
 
