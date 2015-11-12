@@ -4,11 +4,6 @@
 <html>
 	<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script>
-			// $("document").ready(function(){
-			// alert("hello");	
-			// }) 
-		</script>
 
 		<style type="text/css">
 			[requiredBoton]{
@@ -116,7 +111,8 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		<br><br>
 		<form action="/play" method = "POST">
 		<p style="text-align:center"><i> Conectado como: <i><br>
-			<caption>{{us1}}</caption>
+				<caption>{{us1}}</caption>
+				<input type="hidden" name="us1" value="{{us1}}" />
 		</p>
 
 		<p style="text-align:center"><i> Rival: <i><br>
@@ -136,13 +132,15 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		<form action="/rank">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Ver Ranking" name="rank" requiredBoton>
+				<input type="hidden" name="us1" value="{{us1}}" />
 			</p>
 		</form>
 	
 		<form action="/load">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Cargar Partida" name="load" requiredBoton>
-			</p>
+				<input type="hidden" name="us1" value="{{us1}}" />
+		</p>
 		</form>
 
 		<form action="/volverLogin">

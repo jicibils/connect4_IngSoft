@@ -111,12 +111,9 @@
 
 
 		<form action="/load" method = "POST">
-		<p style="text-align:center"><i> Seleccione Player 1 : <i><br>
-			<select name="comboboxUs1" requiredBoton>
-				{{#users}}
-				<option value="{{toString}}"> {{toString}}</option>
-				{{/users}}
-			</select>
+		<p style="text-align:center"><i> Conectado como: <i><br>
+				<caption>{{us1}}</caption>
+				<input type="hidden" name="us1" value="{{us1}}" />
 		</p>
 
 		<p style="text-align:center"><i> Seleccione Player 2 : <i><br>
@@ -138,6 +135,7 @@
 		<form action="/volverConnect4">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+				<input type="hidden" name="us1" value="{{us1}}" />
 			</p>
 		</form>
 

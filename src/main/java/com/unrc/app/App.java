@@ -49,13 +49,65 @@ public class App{
                   return new ModelAndView(null, "Login.moustache");                                   
             }, new MustacheTemplateEngine());
 
+
+            post("/Login", (request, response) -> {
+                  String nick = request.queryParams("nick");
+                  String pass = request.queryParams("pass");
+                  User u = User.findFirst("nickId=?", nick);
+                  if (u != null){
+                        if ((nick.equals(u.get("nickId"))) && (pass.equals(u.get("password")))){
+                              Map<String, Object> attributes = new HashMap<>();
+                              List <User> users = User.findAll();
+                              attributes.put("users",users);
+
+                              // String player1 = request.queryParams("comboboxUs1");
+                              String player2 = request.queryParams("comboboxUs2");
+
+                              attributes.put("us1",nick);
+                              attributes.put("us2",player2);
+                              return new ModelAndView(attributes, "Connect4.moustache");                                   
+                        }
+                        else{
+                              return new ModelAndView(null, "Login.moustache"); 
+                        }
+                  }
+                  else{
+                        return new ModelAndView(null, "Login.moustache"); 
+                  }
+            }, new MustacheTemplateEngine());
+
+/*           get("/", (request, response) -> {
+                  String name = request.session().attribute(us1);
+                  if (name == null) {
+                      return "<html><body>What's your name?: <form action=\"/entry\" method=\"POST\"><input type=\"text\" name=\"name\"/><input type=\"submit\" value=\"go\"/></form></body></html>";
+                  } else {
+                      return String.format("<html><body>Hello, %s!</body></html>", name);
+                  }
+            });
+
+            post("/entry", (request, response) -> {
+                  String name = request.queryParams("us1");
+                  if (name != null) {
+                      request.session().attribute(SESSION_NAME, name);
+                  }
+                  response.redirect("/");
+                  return null;
+            });
+
+            get("/clear", (request, response) -> {
+                  request.session().removeAttribute(SESSION_NAME);
+                  response.redirect("/");
+                  return null;
+            });
+*/
+
               //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
 
-                  String player1 = request.queryParams("comboboxUs1");
+                  String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
@@ -101,7 +153,7 @@ public class App{
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
-                  String player1 = request.queryParams("comboboxUs1");
+                  String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
 
                   // control de usuarios diferentes
@@ -241,6 +293,9 @@ public class App{
                   .orderBy("nroRank asc");
 
                   // attributes.put("ranking",ranking);
+                  String player1 = request.queryParams("us1");
+
+                  attributes.put("us1",player1);
                   attributes.put("pos",position);
 
                   return new ModelAndView(attributes, "rank.moustache");
@@ -252,7 +307,7 @@ public class App{
                   List <User> users = User.findAll();
                   attributes.put("users",users);
 
-                  String player1 = request.queryParams("comboboxUs1");
+                  String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
 
                   attributes.put("us1",player1);
@@ -305,7 +360,7 @@ public class App{
                   
                   Map<String, Object> attributes = new HashMap<>();
 
-                  String player1 = request.queryParams("comboboxUs1");
+                  String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
                   List<User> lu1  = User.where("nickId = ?",player1);
                   User u1 = lu1.get(0);
@@ -331,7 +386,7 @@ public class App{
                   List <User> users = User.findAll();
                   attributes.put("users",users);
 
-                  String player1 = request.queryParams("comboboxUs1");
+                  String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
                   String juegos = "";
 
@@ -357,17 +412,4 @@ public class App{
 
 
       }
-
-
-
-
-
-  
-
-// FALTA PARA EL JUEVES:
-      // >> TEST
-      // >> POWER POINT
-      // >> LIMPIAR CODIGO
-
-
 }

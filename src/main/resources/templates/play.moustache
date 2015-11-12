@@ -228,7 +228,7 @@
 		</form>	
 		<form>	
 
-
+			<!-- 
 		<script type="text/javascript">	
 			$("document").ready(function(x){
 				$("#form1").on("submit",function(){
@@ -247,7 +247,7 @@
 			})
 		</script>
 
-
+ -->
 
 
 
@@ -266,12 +266,14 @@
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value="{{us1}}" />
 				</p>
 			</form>
 
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value="{{us1}}" />
 				</p>
 			</form>
 

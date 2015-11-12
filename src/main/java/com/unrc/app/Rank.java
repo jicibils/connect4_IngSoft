@@ -18,6 +18,9 @@ public class Rank extends Model {
     	return this.getString("user_id");
 	}   
   
+  //   public String toStringNick(){
+  //     return this.getString("nickId");
+  // }   
     public String toStringPG(){
       return this.getString("PG");
   }   

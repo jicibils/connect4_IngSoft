@@ -117,7 +117,7 @@
 
 		<form action="/load">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Volver" name="load" requiredBoton>
+				<input type="submit" value="Volver" name="load" requiredBoton>					<input type="hidden" name="us1" value="{{us1}}" />
 			</p>
 		</form>
 			

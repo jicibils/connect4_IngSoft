@@ -146,6 +146,7 @@
 	    <th>Pos</th>
 	    <th>Points</th>
 	    <th>Id Player</th>
+	    <!-- <th>Player</th> -->
 	    <th>PG</th>
 	    <th>PE</th>
 	    <th>PP</th>
@@ -157,6 +158,7 @@
 			<td> {{toStringPos}}</td>
 			<td> {{toStringPoint}}</td>
 			<td> {{toStringUser}}</td>
+			<!-- <td> {{toStringNick}}</td> -->
 			<td> {{toStringPG}}</td>
 			<td> {{toStringPE}}</td>
 			<td> {{toStringPP}}</td>
@@ -164,11 +166,13 @@
 		</tr>
 		{{/pos}}
 	</table>		
+	<input type="hidden" name="us1" value="{{us1}}" />
 
 		
 	<form action="/volverConnect4">
 		<p style="text-align:center"><br>
 			<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+			<input type="hidden" name="us1" value="{{us1}}" />
 		</p>
 	</form>
 

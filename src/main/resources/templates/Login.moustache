@@ -145,7 +145,7 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		<br><br>
 
 		<p style="text-align:center"><button>Iniciar Sesión</button></p>
-		<form action="Conect4" id="UsyPass" panel>
+		<form action="Login" method="POST"id="UsyPass" panel>
 			<p style="text-align:center"><i> Usuario: <i><br>
 				<input type="text" name="nick" required>
 
