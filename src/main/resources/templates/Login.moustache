@@ -22,6 +22,23 @@
 
 			}
 		</style>	
+		<style type="text/css">
+			button{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+				text-align: center;
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
 
 		<style type="text/css">
 			p{
@@ -101,6 +118,22 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 			}
 
 		</style>
+		<style type="text/css">
+		[panel]{			
+			display: none;
+			}
+
+		</style>
+
+		<script> 
+			$(document).ready(function(){
+			    $("button").click(function(){
+			        $("#UsyPass").slideToggle("slow");
+			    });
+			});
+		</script>
+
+
 	</head>
 
 	<body>
@@ -111,8 +144,8 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		</center>	
 		<br><br>
 
-		<form action="/Connect4" id="checkUsyPass">
-			<br><br>
+		<p style="text-align:center"><button>Iniciar Sesión</button></p>
+		<form action="Conect4" id="UsyPass" panel>
 			<p style="text-align:center"><i> Usuario: <i><br>
 				<input type="text" name="nick" required>
 
@@ -120,8 +153,10 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 				<input type="password" name="pass" required>
 
 				<br><br>
-				<input type="submit" value="Iniciar Sesión" requiredBoton>
+				<input type="submit" value="Ingresar" requiredBoton>
 		</form>
+ 
+
 		<script type="text/javascript">	
 			// $("document").ready(function(x){
 			// 	$("#checkUsyPass").on("submit",function(){
