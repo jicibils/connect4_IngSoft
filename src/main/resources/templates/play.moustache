@@ -4,6 +4,33 @@
 	<head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		
+	<script type="text/javascript">
+	
+
+
+
+
+        $(document).on('ready', exec);
+
+        function exec(){
+
+        	$('#cell').on('click',update);
+        }
+
+        function update(){
+
+
+
+        	
+        }
+
+
+
+
+	</script>
+
+
 		<style type="text/css">
 			[requiredBoton]{
 				background:black;
@@ -177,6 +204,10 @@
 
  <!-- ____________________________________________________________________________  -->
 
+	
+ 	<!-- ____________________________________________________________________________  -->
+
+
 	</head>
 
 	<body>
@@ -210,7 +241,7 @@
 
  <!-- ____________________________________________________________________________  -->
 				
-		<form action="/play"  id="form1">
+		<form id="botones" action="/play" method="get">
 			<style>
 					table, th, td {
 						border: 2px solid black;
@@ -231,58 +262,29 @@
 					<input type="hidden" name="us2" value="{{us2}}" />
 					
 	
-				<input type="submit" value="   0   " name="C" requiredBoton />
-				<input type="submit" value="   1   " name="C" requiredBoton />
-				<input type="submit" value="   2   " name="C" requiredBoton />
-				<input type="submit" value="   3   " name="C" requiredBoton />
-				<input type="submit" value="   4   " name="C" requiredBoton />
-				<input type="submit" value="   5   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   0   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   1   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   2   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   3   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   4   " name="C" requiredBoton />
+				<input id="cell" type="submit" value="   5   " name="C" requiredBoton />
 				
 			</p>
-		</form>	
-		<form>	
+		
+			<p style="text-align:center">
+				<caption>{{us1}} vs {{us2}}</caption>
+			</p>
 
+			</form>	
 
- <!-- ____________________________________________________________________________  -->
- 
-
-			<!-- 
-		<script type="text/javascript">	
-			$("document").ready(function(x){
-				$("#form1").on("submit",function(){
-					alert("hola");
-
-				});
-				x.preventDefault();
-				$("#form1").ajax({
-					url:"/play";
-					data:{column:"1", game_id:"x"};
-					method:"post"
-				}).done(function(data)){
-					alert("hola");
-				}
-				return false;
-			})
-		</script>
-
- -->
- 	
-
- <!-- ____________________________________________________________________________  -->
-
-
-   		<p style="text-align:center">
-			<caption>{{us1}} vs {{us2}}</caption>
-			// <i> Turno: {{turno}}<i>	
-		</p>
-			{{{table}}}
-		</form>
-
-		<form>		
-			{{{result}}}
-
-		</form>
-
+			<form id="matriz">
+				{{{table}}}
+		
+				{{{result}}}
+			
+			</form>	
+			
+		   		
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
