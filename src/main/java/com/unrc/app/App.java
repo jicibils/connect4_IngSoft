@@ -175,7 +175,7 @@ public class App{
                         attributes.put("game_id",g.get("id"));
                         attributes.put("table", table);
                         if(reg){
-                          return new ModelAndView(attributes, "play.moustache");
+                          return new ModelAndView(attributes, "game.moustache");
                         }
                         else{
                             return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -185,7 +185,7 @@ public class App{
             
 
 
-            get("/play", (request, response) -> {
+            post("/game", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
                   String player1 = request.queryParams("us1");
@@ -279,7 +279,7 @@ public class App{
                   }
 
                                             
-                   return new ModelAndView(attributes, "play.moustache");
+                   return new ModelAndView(attributes, "game.moustache");
                   }, new MustacheTemplateEngine());
 
  

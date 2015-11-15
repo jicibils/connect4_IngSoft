@@ -1,0 +1,314 @@
+			<!-- play.moustache -->
+
+<html>
+	<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<style type="text/css">
+			[requiredBoton]{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
+		<style type="text/css">
+		p{			
+			color:black;
+			text-shadow: 0px 0px 10px gray;
+		    text-align:center;
+			font-size: 15px;
+			font-family: cursive;
+			}
+
+		</style>
+		<style type="text/css">
+		h2{			
+			color:black;
+			text-shadow: 10px 10px 5px green;
+		    text-align:center;
+			font-size: 25px;
+			font-family: cursive;
+			position:relative;
+			animation: primeraAnimacion 20s;
+			-webkit-animation: primeraAnimacion 20s;
+			}
+			@keyframes primeraAnimacion{
+			0% {left:0px;top:0px;rotate(0deg);}
+			20% {left:400px;top:0px;rotate(45deg);}
+			40% {left:400px;top:-300px;rotate(90deg);}
+			60% {left:400px;top:0px;rotate(134deg);}
+			80%{left:-400px;top:0px;rotate(180deg);}
+			100%{left:-400px;top:-300px;rotate(90deg);}
+			}
+			@-webkit-keyframes primeraAnimacion{
+			0% {left:0px;top:0px;rotate(0deg);}
+			20% {left:400px;top:0px;rotate(45deg);}
+			40% {left:400px;top:-300px;rotate(90deg);}
+			60% {left:400px;top:0px;rotate(134deg);}
+			80%{left:-400px;top:0px;rotate(180deg);}
+			100%{left:-400px;top:-300px;rotate(90deg);}
+			}
+		</style>
+
+
+ <!-- ____________________________________________________________________________  -->
+
+		</style>
+
+		<style type="text/css">
+			#logo{			
+			background:rgb(200,255,200);
+			
+			top:-50%;
+			
+			color:white;
+			text-align:center;
+			font-size: 100px;
+			text-shadow: 0px 0px 10px white ;
+				width:500px;
+				height:120px;
+				border: 2px solid white;
+				border-radius: 0px 15px 0px 15px;
+				box-shadow: 0px 0px 15px black;
+				font-family: Amaze;
+				font-weight: bold;
+				overflow:hidden;
+	background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black), to(green));
+			transition:width 2s, height 2s;
+			-webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+			-o-transition:width 2s, height 2s, -o-transform 2s;
+			}
+			#logo:hover{
+			width:700px;
+			height:120px;
+			transform:rotate(360deg);
+			-webkit-transform:rotate(360deg);
+			-o-transform:rotate(360deg);
+			
+			}
+		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
+		<style type="text/css">
+		#names{			
+			color:black;
+			text-shadow: 0px 0px 10px white;
+		    text-align:center;
+			font-size: 25px;
+			font-family: Vladimir Script;
+			animation: parpadeo 2s;
+			-webkit-animation: parpadeo 2s;
+			animation-iteration-count:infinite;
+			-webkit-animation-iteration-count:infinite;
+			}
+			@keyframes parpadeo{
+				0%{text-shadow: 0px 0px 5px black;}
+				50%{text-shadow: 0px 0px 25px black;}
+				100%{text-shadow: 0px 0px 5px black;}
+			}
+			@-webkit-keyframes parpadeo{
+				0%{-webkit-text-shadow: 0px 0px 5px black;}
+				50%{-webkit-text-shadow: 0px 0px 25px black;}
+				100%{-webkit-text-shadow: 0px 0px 5px black;}
+			}
+
+		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
+		<style>
+			th{
+				background: black;
+				color:white;
+			    text-align:center;
+				font-size: 25px;
+				font-family: Amaze;
+			}
+		</style>
+		<style>
+			table{
+			    text-align:center;
+			    width: 300px;
+			    height: 200px;
+			}
+		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
+		<style>
+			td{
+			border-radius: 60px 60px 60px 60px;
+			animation: intermitencia 4s;
+			-webkit-animation: intermitencia 4s;
+			animation-iteration-count:infinite;
+			-webkit-animation-iteration-count:infinite;
+
+			transition:width 2s, height 2s;
+			-webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+			-o-transition:width 2s, height 2s, -o-transform 2s;
+			}
+			td:hover{
+			transform:rotate(360deg);
+			-webkit-transform:rotate(360deg);
+			-o-transform:rotate(360deg);
+			
+			}
+			@keyframes intermitencia{
+				0%{box-shadow: 0px 0px 5px black;}
+				50%{box-shadow: 0px 0px 15px black;}
+				100%{box-shadow: 0px 0px 5px black;}
+			}
+			@-webkit-keyframes intermitencia{
+				0%{-webkit-box-shadow: 0px 0px 5px black;}
+				50%{-webkit-box-shadow: 0px 0px 25px black;}
+				100%{-webkit-box-shadow: 0px 0px 5px black;}
+			}
+		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
+	</head>
+
+	<body>
+		<center>
+			<div id="logo">
+				Connect 4
+			</div>
+		</center>	
+
+		<form>
+			<p> Seleccione Dimension Grilla: 
+			<select name="dimension" requiredBoton>
+			<option value="7x6">7x6 (Default)</option>
+			</select>
+			</p>
+		</form>
+
+		<form>
+			<p> Color ficha {{us1}}: <i>
+			<input type="color" name="colorP1" value="#ff0000" requiredBoton>
+			</p>
+		</form>
+
+
+		<form>
+			<p> Color ficha {{us2}}: 
+			<input type="color" name="colorP2" value="#000dff" requiredBoton>
+			</p>
+		</form>
+
+
+ <!-- ____________________________________________________________________________  -->
+				
+		<form action="/game"  id="form1" method="post">
+			<style>
+					table, th, td {
+						border: 2px solid black;
+						border-collapse: collapse;
+					}
+					th, td {
+						padding: 7px;
+						text-align: center;
+					}
+			</style>
+
+			<p style="text-align:center"><br>
+
+					<input type="hidden" name="table" value="{{table}}" />
+					<input type="hidden" name="turno" value="{{turno}}" />
+					<input type="hidden" name="game_id" value="{{game_id}}" />
+					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us2" value="{{us2}}" />
+					
+	
+				<input type="submit" value="   0   " name="C" requiredBoton />
+				<input type="submit" value="   1   " name="C" requiredBoton />
+				<input type="submit" value="   2   " name="C" requiredBoton />
+				<input type="submit" value="   3   " name="C" requiredBoton />
+				<input type="submit" value="   4   " name="C" requiredBoton />
+				<input type="submit" value="   5   " name="C" requiredBoton />
+				
+			</p>
+		</form>	
+		
+
+
+ <!-- ____________________________________________________________________________  -->
+ 
+
+		<script type="text/javascript">	
+
+			$("document").ready(function(){
+
+				$("#form1").on("submit",function(form){
+					
+					
+					
+					$.ajax({
+                    
+                    url: "/game",
+                    data: {table: {{{table}}} },
+                    method: "post",
+                    }).done(function(data){
+
+                    	$('#tabla').html(data); 
+                       
+                    });      							
+					
+					form.preventDefault();
+				
+				});
+
+			});
+		</script>
+
+
+ 	
+
+ <!-- ____________________________________________________________________________  -->
+
+
+   		<p style="text-align:center">
+			<caption>{{us1}} vs {{us2}}</caption>
+			
+		</p>
+		<div id="tabla">	
+			{{{table}}}
+		</div>
+
+		<form>		
+			{{{result}}}
+
+		</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value="{{us1}}" />
+				</p>
+			</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value="{{us1}}" />
+				</p>
+			</form>
+
+		</form>
+		<div id="names">
+			<i>" Cibils - Dominguez - Bertorello "<i>
+		</div>
+	</body>
+</html>
