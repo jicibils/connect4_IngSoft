@@ -13,6 +13,10 @@ import com.unrc.app.Removed;
 
 import org.javalite.activejdbc.Base;
 import static spark.Spark.*;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.*;
@@ -32,7 +36,8 @@ import com.github.mustachejava.MustacheFactory;
 
 public class App{
 
-  
+      private static final String SESSION_NAME = "username";
+
       public static void main( String[] args ){
 
             before((request, response) -> {
@@ -55,17 +60,29 @@ public class App{
                   String pass = request.queryParams("pass");
                   User u = User.findFirst("nickId=?", nick);
                   if (u != null){
+                        System.out.println("AAAAAAAAAAAAAAAAAAA");
                         if ((nick.equals(u.get("nickId"))) && (pass.equals(u.get("password")))){
-                              Map<String, Object> attributes = new HashMap<>();
-                              List <User> users = User.findAll();
-                              attributes.put("users",users);
+                        System.out.println("BBBBBBBBBBBBBBBBBBBbb");
+                              // Map<String, Object> attributes = new HashMap<>();
+                              // List <User> users = User.findAll();
+                              // attributes.put("users",users);
 
-                              // String player1 = request.queryParams("comboboxUs1");
-                              String player2 = request.queryParams("comboboxUs2");
+                              // // String player1 = request.queryParams("comboboxUs1");
+                              // String player2 = request.queryParams("comboboxUs2");
 
-                              attributes.put("us1",nick);
-                              attributes.put("us2",player2);
-                              return new ModelAndView(attributes, "Connect4.moustache");                                   
+                              // attributes.put("us1",nick);
+                              // attributes.put("us2",player2);
+                              // request.session(true);
+                              if (nick != null) {
+                        System.out.println("CCCCCCCCCCCCCCCCCCCCc");
+                                    request.session().attribute(SESSION_NAME, nick);
+                              }      
+                        System.out.println("DDDDDDDDDDDDDDDDDDDdd");
+                              response.redirect("/");
+                        System.out.println("EEEEEEEEEEEEEEEEEEEEEeee");
+                              return null;
+
+                              // return new ModelAndView(attributes, "Connect4.moustache");                                   
                         }
                         else{
                               return new ModelAndView(null, "Login.moustache"); 
@@ -76,33 +93,36 @@ public class App{
                   }
             }, new MustacheTemplateEngine());
 
-/*           get("/", (request, response) -> {
-                  String name = request.session().attribute(us1);
+            get("/", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
+                        System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFf");
                   if (name == null) {
-                      return "<html><body>What's your name?: <form action=\"/entry\" method=\"POST\"><input type=\"text\" name=\"name\"/><input type=\"submit\" value=\"go\"/></form></body></html>";
+                        return new ModelAndView(null, "Login.moustache"); 
                   } else {
-                      return String.format("<html><body>Hello, %s!</body></html>", name);
-                  }
-            });
+                        Map<String, Object> attributes = new HashMap<>();
+                        List <User> users = User.findAll();
+                        attributes.put("users",users);
 
-            post("/entry", (request, response) -> {
-                  String name = request.queryParams("us1");
-                  if (name != null) {
-                      request.session().attribute(SESSION_NAME, name);
-                  }
-                  response.redirect("/");
-                  return null;
-            });
+                        // String player1 = request.queryParams("comboboxUs1");
+                        String player2 = request.queryParams("comboboxUs2");
+                        System.out.println("SESSION_NAME "+name);
 
-            get("/clear", (request, response) -> {
+                        attributes.put("us1",name);
+                        attributes.put("us2",player2);
+                        attributes.put("SESSION_NAME",name);
+
+                        return new ModelAndView(attributes, "Connect4.moustache");                                   
+                  }
+              }, new MustacheTemplateEngine());
+
+            get("/cerrarSesion", (request, response) -> {
                   request.session().removeAttribute(SESSION_NAME);
                   response.redirect("/");
                   return null;
             });
-*/
-
               //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -111,6 +131,7 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
+                  attributes.put("SESSION_NAME",name);
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
 
@@ -136,12 +157,12 @@ public class App{
                         List <User> users = User.findAll();
                         attributes.put("users",users);
 
-                        String player1 = request.queryParams("comboboxUs1");
+                        String player1 = request.queryParams("us1");
                         String player2 = request.queryParams("comboboxUs2");
 
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
-                        return new ModelAndView(attributes, "Connect4.moustache");                                   
+                        return new ModelAndView(attributes, "Login.moustache");                                   
                   }
                   else{
                         return new ModelAndView(null, "registered.moustache"); 
@@ -152,6 +173,7 @@ public class App{
 
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
@@ -161,11 +183,13 @@ public class App{
                         List <User> users = User.findAll();
                         attributes.put("users",users);
 
+                        attributes.put("SESSION_NAME",name);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         return new ModelAndView(attributes, "Connect4.moustache");                                   
                   }
                   else{
+                        attributes.put("SESSION_NAME",name);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         attributes.put("turno",player1);
@@ -186,6 +210,7 @@ public class App{
 
 
             get("/play", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
 
                   String player1 = request.queryParams("us1");
@@ -204,6 +229,7 @@ public class App{
                   List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
                   game.set_Cells(celdas);
                   Grid g = grid.get(0);               
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
@@ -285,6 +311,7 @@ public class App{
  
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   // List <Rank> ranking = Rank.findAll()
                   // .orderBy("points desc");
@@ -295,6 +322,7 @@ public class App{
                   // attributes.put("ranking",ranking);
                   String player1 = request.queryParams("us1");
 
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("pos",position);
 
@@ -303,6 +331,7 @@ public class App{
 
 
             get("/volverConnect4", (request, response) -> {
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -310,6 +339,7 @@ public class App{
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
 
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -322,6 +352,7 @@ public class App{
 
             post("/loadplayer", (request, response) -> {
                   
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   String game_id = request.queryParams("game_id");
                   
@@ -345,6 +376,7 @@ public class App{
                   if ((g.getGrid().getCant()%2)==0) turno = player1;
                   else turno = player2;
                   
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("turno",turno);     
@@ -358,6 +390,7 @@ public class App{
 
             post("/load", (request, response) -> {
                   
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
 
                   String player1 = request.queryParams("us1");
@@ -369,6 +402,7 @@ public class App{
 
                   List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"' AND dateEnd IS NULL");
                   attributes.put("juegos",juegos);
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
 
@@ -382,6 +416,7 @@ public class App{
 
             get("/load", (request, response) -> {
 
+                  String name = request.session().attribute(SESSION_NAME);
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -390,6 +425,7 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   String juegos = "";
 
+                  attributes.put("SESSION_NAME",name);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("juegos",juegos);

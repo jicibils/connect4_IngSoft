@@ -143,9 +143,9 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 		</p>
 		</form>
 
-		<form action="/volverLogin">
+		<form action="/cerrarSesion">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Cerrar Sesión" name="volverLogin" requiredBoton>
+				<input type="submit" value="Cerrar Sesión" name="cerrarSesion" requiredBoton>
 			</p>
 		</form>
 

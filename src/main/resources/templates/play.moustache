@@ -228,7 +228,7 @@
 		</form>	
 		<form>	
 
-			<!-- 
+			
 		<script type="text/javascript">	
 			$("document").ready(function(x){
 				$("#form1").on("submit",function(){
@@ -239,7 +239,7 @@
 				$("#form1").ajax({
 					url:"/play";
 					data:{column:"1", game_id:"x"};
-					method:"post"
+					method:"get"
 				}).done(function(data)){
 					alert("hola");
 				}
@@ -247,7 +247,7 @@
 			})
 		</script>
 
- -->
+
 
 
 
