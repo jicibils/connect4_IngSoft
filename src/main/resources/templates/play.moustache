@@ -4,6 +4,7 @@
 	<head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 		<style type="text/css">
 			[requiredBoton]{
 				background:black;
@@ -60,6 +61,8 @@
 		</style>
 
 
+ <!-- ____________________________________________________________________________  -->
+
 		</style>
 
 		<style type="text/css">
@@ -94,6 +97,9 @@
 			
 			}
 		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
 		<style type="text/css">
 		#names{			
 			color:black;
@@ -118,6 +124,9 @@
 			}
 
 		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
 		<style>
 			th{
 				background: black;
@@ -134,6 +143,9 @@
 			    height: 200px;
 			}
 		</style>
+
+ <!-- ____________________________________________________________________________  -->
+
 		<style>
 			td{
 			border-radius: 60px 60px 60px 60px;
@@ -163,6 +175,8 @@
 				100%{-webkit-box-shadow: 0px 0px 5px black;}
 			}
 		</style>
+
+ <!-- ____________________________________________________________________________  -->
 
 	</head>
 
@@ -195,8 +209,9 @@
 		</form>
 
 
+ <!-- ____________________________________________________________________________  -->
 				
-		<form action="/play"  id="form1">
+		<form id="form1" action="game" method="post">
 			<style>
 					table, th, td {
 						border: 2px solid black;
@@ -210,54 +225,66 @@
 
 			<p style="text-align:center"><br>
 
-					<input type="hidden" name="table" value="{{table}}" />
-					<input type="hidden" name="turno" value="{{turno}}" />
-					<input type="hidden" name="game_id" value="{{game_id}}" />
-					<input type="hidden" name="us1" value="{{us1}}" />
-					<input type="hidden" name="us2" value="{{us2}}" />
+					<input type="hidden" name="table" value={{table}} />
+					<input type="hidden" name="turno" value={{turno}} />
+					<input type="hidden" name="game_id" value={{game_id}} />
+					<input type="hidden" name="us1" value={{us1}} />
+					<input type="hidden" name="us2" value={{us2}} />
 					
 	
-				<input type="submit" value="   0   " name="C" requiredBoton />
-				<input type="submit" value="   1   " name="C" requiredBoton />
-				<input type="submit" value="   2   " name="C" requiredBoton />
-				<input type="submit" value="   3   " name="C" requiredBoton />
-				<input type="submit" value="   4   " name="C" requiredBoton />
-				<input type="submit" value="   5   " name="C" requiredBoton />
+				<input type="submit" value="   0   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   1   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   2   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   3   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   4   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   5   " name="C" class="button" requiredBoton />
 				
 			</p>
 		</form>	
-		<form>	
+		
+
+
+ <!-- ____________________________________________________________________________  -->
+ 
+
+			<script type="text/javascript">	
 
 			
-		<script type="text/javascript">	
-			$("document").ready(function(x){
-				$("#form1").on("submit",function(){
-					alert("hola");
+				$(".button").on("click", function(evento){									
+					
+					evento.preventDefault();					
 
+					var boton = $(this).val();			
+					
+					var request = $.ajax({
+											data: {"sesion_actual": "{{sesion_actual}}",
+											       "us1": "{{us1}}",
+											       "us2": "{{us2}}",
+											       "game_id": "{{game_id}}",
+							   					   "turno": "{{turno}}",
+							   					   "C": boton},
+											url: "/game",
+											method: "post",											
+										});
+
+					request.done(function(data){
+						
+						$("html").html(data); 
+												
+					});						
 				});
-				x.preventDefault();
-				$("#form1").ajax({
-					url:"/play";
-					data:{column:"1", game_id:"x"};
-					method:"get"
-				}).done(function(data)){
-					alert("hola");
-				}
-				return false;
-			})
 		</script>
 
-
-
+ <!-- ____________________________________________________________________________  -->
 
 
    		<p style="text-align:center">
 			<caption>{{us1}} vs {{us2}}</caption>
-			// <i> Turno: {{turno}}<i>	
+			
 		</p>
+		<div id="tabla">	
 			{{{table}}}
-		</form>
-
+		</div>
 		<form>		
 			{{{result}}}
 
@@ -266,14 +293,14 @@
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
-					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us1" value={{us1}} />
 				</p>
 			</form>
 
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
-					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us1" value={{us1}} />
 				</p>
 			</form>
 

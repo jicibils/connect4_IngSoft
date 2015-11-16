@@ -34,9 +34,9 @@ import com.github.mustachejava.MustacheFactory;
 
 
 
-public class App{
+public class App{ 
 
-      private static final String SESSION_NAME = "username";
+      private static final String sesion_actual = "username";
 
       public static void main( String[] args ){
 
@@ -75,7 +75,7 @@ public class App{
                               // request.session(true);
                               if (nick != null) {
                         System.out.println("CCCCCCCCCCCCCCCCCCCCc");
-                                    request.session().attribute(SESSION_NAME, nick);
+                                    request.session().attribute(sesion_actual, nick);
                               }      
                         System.out.println("DDDDDDDDDDDDDDDDDDDdd");
                               response.redirect("/");
@@ -96,7 +96,8 @@ public class App{
 
             get("/", (request, response) -> {
                         System.out.println("111111111111111111111111111");
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
+
                         System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFf");
                   if (session == null) {
                         return new ModelAndView(null, "main.moustache"); 
@@ -107,30 +108,30 @@ public class App{
 
                         // String player1 = request.queryParams("comboboxUs1");
                         String player2 = request.queryParams("comboboxUs2");
-                        System.out.println("SESSION_NAME "+session);
+                        System.out.println("sesion_actual "+session);
 
                         attributes.put("us1",session);
                         attributes.put("us2",player2);
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
 
                         return new ModelAndView(attributes, "Connect4.moustache");                                   
                   }
               }, new MustacheTemplateEngine());
 
             get("/cerrarSesion", (request, response) -> {
-                  String session = request.session().attribute("SESSION_NAME");
+                  String session = request.session().attribute("sesion_actual");
                   if (session != null) {
-                      request.session().removeAttribute("SESSION_NAME");
+                      request.session().removeAttribute("sesion_actual");
                       response.redirect("/bye");
                   }
                   return new ModelAndView(null, "bye.moustache");
-                  // request.session().removeAttribute(SESSION_NAME);
+                  // request.session().removeAttribute(sesion_actual);
                   // response.redirect("/");
                   // return null;
             }, new MustacheTemplateEngine());
               //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
-                  String name = request.session().attribute(SESSION_NAME);
+                  String name = request.session().attribute(sesion_actual);
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -139,7 +140,7 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
-                  attributes.put("SESSION_NAME",name);
+                  attributes.put("sesion_actual",name);
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
 
@@ -181,9 +182,12 @@ public class App{
 
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
-                  String session = request.session().attribute(SESSION_NAME);
+
+                  String session = request.session().attribute(sesion_actual);
+
+
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
                         Map<String, Object> attributes = new HashMap<>();
@@ -195,7 +199,7 @@ public class App{
                               List <User> users = User.findAll();
                               attributes.put("users",users);
 
-                              attributes.put("SESSION_NAME",session);
+                              attributes.put("sesion_actual",session);
                               attributes.put("us1",player1);
                               attributes.put("us2",player2);
                               return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -206,7 +210,7 @@ public class App{
                                     return new ModelAndView(attributes, "Connect4.moustache");                                   
                               }      
                               else{
-                                    attributes.put("SESSION_NAME",session);
+                                    attributes.put("sesion_actual",session);
                                     attributes.put("us1",player1);
                                     attributes.put("us2",player2);
                                     attributes.put("turno",player1);
@@ -228,13 +232,16 @@ public class App{
             
 
 
-            get("/play", (request, response) -> {
-                  String session = request.session().attribute(SESSION_NAME);
-                  if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+            post("/game", (request, response) -> {
+
+                  String name = request.queryParams("sesion_actual");
+
+                  if (name == null) {
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
                         Map<String, Object> attributes = new HashMap<>();
+
 
                         String player1 = request.queryParams("us1");
                         String player2 = request.queryParams("us2");
@@ -252,7 +259,7 @@ public class App{
                         List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
                         game.set_Cells(celdas);
                         Grid g = grid.get(0);               
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",name);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         attributes.put("game_id",game_id);
@@ -264,11 +271,9 @@ public class App{
                               if (c==null) turno = Play.turn(player1,player2,turno);
                         }
 
-                        String table = request.queryParams("table");
-                        table = game.getGrid().toStringTable(); 
-                        attributes.put("table", table);
                         
                         if (c!=null){
+
 
                               c.set("X",c.getx());    
                               c.set("Y",c.gety());    
@@ -276,10 +281,15 @@ public class App{
                               c.save();
                               g.add(c);
 
+
                         }
                         attributes.put("turno",turno);
+                        String table = game.getGrid().toStringTable(); 
+                        attributes.put("table", table);
+                        
                         
                         //Check winner
+
 
                         int partida = game.gameOver(c);
 
@@ -333,11 +343,19 @@ public class App{
             }, new MustacheTemplateEngine());
 
  
+
+
+
+
+
+
+
+
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
 
@@ -351,7 +369,7 @@ public class App{
                         // attributes.put("ranking",ranking);
                         String player1 = request.queryParams("us1");
 
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
                         attributes.put("us1",player1);
                         attributes.put("pos",position);
 
@@ -361,9 +379,9 @@ public class App{
 
 
             get("/volverConnect4", (request, response) -> {
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
 
@@ -374,7 +392,7 @@ public class App{
                         String player1 = request.queryParams("us1");
                         String player2 = request.queryParams("comboboxUs2");
 
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -388,9 +406,9 @@ public class App{
 
             post("/loadplayer", (request, response) -> {
                   
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
 
@@ -417,7 +435,7 @@ public class App{
                         if ((g.getGrid().getCant()%2)==0) turno = player1;
                         else turno = player2;
                         
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         attributes.put("turno",turno);     
@@ -432,9 +450,9 @@ public class App{
 
             post("/load", (request, response) -> {
                   
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
 
@@ -449,7 +467,7 @@ public class App{
 
                         List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"' AND dateEnd IS NULL");
                         attributes.put("juegos",juegos);
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
 
@@ -464,9 +482,9 @@ public class App{
 
             get("/load", (request, response) -> {
 
-                  String session = request.session().attribute(SESSION_NAME);
+                  String session = request.session().attribute(sesion_actual);
                   if (session == null) {
-                      return new ModelAndView(null, "main.mustache");
+                      return new ModelAndView(null, "main.moustache");
                   }
                   else{
                         Map<String, Object> attributes = new HashMap<>();
@@ -477,7 +495,7 @@ public class App{
                         String player2 = request.queryParams("comboboxUs2");
                         String juegos = "";
 
-                        attributes.put("SESSION_NAME",session);
+                        attributes.put("sesion_actual",session);
                         attributes.put("us1",player1);
                         attributes.put("us2",player2);
                         attributes.put("juegos",juegos);
