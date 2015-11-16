@@ -211,7 +211,7 @@
 
  <!-- ____________________________________________________________________________  -->
 				
-		<form action="/game"  id="form1" method="post">
+		<form id="form1" action="game" method="post">
 			<style>
 					table, th, td {
 						border: 2px solid black;
@@ -225,19 +225,19 @@
 
 			<p style="text-align:center"><br>
 
-					<input type="hidden" name="table" value="{{table}}" />
-					<input type="hidden" name="turno" value="{{turno}}" />
-					<input type="hidden" name="game_id" value="{{game_id}}" />
-					<input type="hidden" name="us1" value="{{us1}}" />
-					<input type="hidden" name="us2" value="{{us2}}" />
+					<input type="hidden" name="table" value={{table}} />
+					<input type="hidden" name="turno" value={{turno}} />
+					<input type="hidden" name="game_id" value={{game_id}} />
+					<input type="hidden" name="us1" value={{us1}} />
+					<input type="hidden" name="us2" value={{us2}} />
 					
 	
-				<input type="submit" value="   0   " name="C" requiredBoton />
-				<input type="submit" value="   1   " name="C" requiredBoton />
-				<input type="submit" value="   2   " name="C" requiredBoton />
-				<input type="submit" value="   3   " name="C" requiredBoton />
-				<input type="submit" value="   4   " name="C" requiredBoton />
-				<input type="submit" value="   5   " name="C" requiredBoton />
+				<input type="submit" value="   0   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   1   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   2   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   3   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   4   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   5   " name="C" class="button" requiredBoton />
 				
 			</p>
 		</form>	
@@ -247,34 +247,39 @@
  <!-- ____________________________________________________________________________  -->
  
 
-		<script type="text/javascript">	
+			<script type="text/javascript">	
 
 			$("document").ready(function(){
 
-				$("#form1").on("submit",function(form){
-					
-					
-					
-					$.ajax({
-                    
-                    url: "/game",
-                    data: {table: {{{table}}} },
-                    method: "post",
-                    }).done(function(data){
+				alert("{{turno}}");
 
-                    	$('#tabla').html(data); 
-                       
-                    });      							
+				$(".button").on("click", function(evento){
+									
 					
-					form.preventDefault();
-				
+					evento.preventDefault();					
+
+					var boton = $(this).val();			
+					
+					var request = $.ajax({
+											data: {"us1": "{{us1}}","us2": "{{us2}}","game_id": "{{game_id}}",
+							   					   "turno": "{{turno}}", "C": boton },
+											url: "/game",
+											method: "post",
+											
+										});
+
+
+					request.done(function(data){
+						
+						$("html").html(data); 
+												
+					});						
+					
 				});
 
 			});
+
 		</script>
-
-
- 	
 
  <!-- ____________________________________________________________________________  -->
 
@@ -286,7 +291,6 @@
 		<div id="tabla">	
 			{{{table}}}
 		</div>
-
 		<form>		
 			{{{result}}}
 
@@ -295,14 +299,14 @@
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
-					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us1" value={{us1}} />
 				</p>
 			</form>
 
 			<form action="/volverConnect4">
 				<p style="text-align:center"><br>
 					<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
-					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us1" value={{us1}} />
 				</p>
 			</form>
 

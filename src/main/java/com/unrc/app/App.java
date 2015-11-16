@@ -152,6 +152,8 @@ public class App{
 
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
+
+                  
                   Map<String, Object> attributes = new HashMap<>();
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("comboboxUs2");
@@ -175,7 +177,7 @@ public class App{
                         attributes.put("game_id",g.get("id"));
                         attributes.put("table", table);
                         if(reg){
-                          return new ModelAndView(attributes, "game.moustache");
+                          return new ModelAndView(attributes, "play.moustache");
                         }
                         else{
                             return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -186,16 +188,24 @@ public class App{
 
 
             post("/game", (request, response) -> {
-                  Map<String, Object> attributes = new HashMap<>();
 
+
+                  System.out.println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet");
+                    System.out.println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet");
+                      System.out.println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet");
+                        System.out.println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet");
+
+                  Map<String, Object> attributes = new HashMap<>();
+                  //--------------------------------------------------------------------
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("us2");
                   String game_id = request.queryParams("game_id");
                   String turno = request.queryParams("turno");
                   String boton = request.queryParams("C");
-                  
+                  //--------------------------------------------------------------------
                   List<Game> ga  = Game.where("id = ?", game_id);
                   Game game = new Game();
+                  //Nuestro Juego Actual
                   game = ga.get(0); 
 
 
@@ -203,22 +213,23 @@ public class App{
                   List<Grid> grid = Grid.where("id = ?", id_grid);
                   List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
                   game.set_Cells(celdas);
+                  //Nuestra Grilla Actual
                   Grid g = grid.get(0);               
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
-                  attributes.put("game_id",game_id);
+                  
                   Cell c = null;
+                  //Si el juego no finalizo
                   if (game.get("dateEnd") == null){
                         int y = Character.getNumericValue(boton.charAt(3));
                         turno = Play.turn(player1,player2,turno);
                         c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                        //Columna Llena
                         if (c==null) turno = Play.turn(player1,player2,turno);
                   }
 
-                  String table = request.queryParams("table");
-                  table = game.getGrid().toStringTable(); 
-                  attributes.put("table", table);
                   
+                  //Insercion de ficha con exito
                   if (c!=null){
 
                         c.set("X",c.getx());    
@@ -229,6 +240,10 @@ public class App{
 
                   }
                   attributes.put("turno",turno);
+                  attributes.put("game_id",game_id);
+                  String table = game.getGrid().toStringTable();
+                  attributes.put("table", table);
+                  
                   
                   //Check winner
 
@@ -279,10 +294,18 @@ public class App{
                   }
 
                                             
-                   return new ModelAndView(attributes, "game.moustache");
+                   return new ModelAndView(attributes, "play.moustache");
                   }, new MustacheTemplateEngine());
 
  
+
+
+
+
+
+
+
+
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
