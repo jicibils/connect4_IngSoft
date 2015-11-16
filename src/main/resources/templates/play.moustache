@@ -249,10 +249,7 @@
 
 			<script type="text/javascript">	
 
-			$("document").ready(function(){
-
-				alert("{{turno}}");
-
+			
 				$(".button").on("click", function(evento){
 									
 					
@@ -277,7 +274,7 @@
 					
 				});
 
-			});
+			
 
 		</script>
 
