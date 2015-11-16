@@ -25,6 +25,22 @@
 			}
 
 		</style>
+		<style type="text/css">
+			[requiredBoton]{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
 
 		<style type="text/css">
 		#names{			
@@ -68,8 +84,11 @@
 			</center>	
 			<br><br>
 			<br><br>
-			<br><br>
-			<br><br>
+			<form action="/volverLogin">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver al Inicio" name="volverLogin" requiredBoton>
+				</p>
+			</form>
 			<br><br>
 			<br><br>
 			<br><br>
