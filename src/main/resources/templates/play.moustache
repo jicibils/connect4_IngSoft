@@ -280,6 +280,7 @@
 
    		<p style="text-align:center">
 			<caption>{{us1}} vs {{us2}}</caption>
+			<caption> // Turno: {{turno}}</caption>
 			
 		</p>
 		<div id="tabla">	
