@@ -4,7 +4,6 @@
 <html>
 	<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 		<style type="text/css">
 			[requiredBoton]{
 				background:black;
@@ -129,6 +128,14 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 			</p>
 		</form>
 
+		<form action="/menuOnline">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Jugar Online" name="jugarOnline" requiredBoton>
+				<input type="hidden" name="us1" value="{{us1}}" />
+				<input type="hidden" name="sesion" value="{{sesion_actual}}" />
+			</p>
+		</form>
+
 		<form action="/rank">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Ver Ranking" name="rank" requiredBoton>
@@ -140,7 +147,7 @@ background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black)
 			<p style="text-align:center"><br>
 				<input type="submit" value="Cargar Partida" name="load" requiredBoton>
 				<input type="hidden" name="us1" value="{{us1}}" />
-		</p>
+			</p>
 		</form>
 
 		<form action="/cerrarSesion">

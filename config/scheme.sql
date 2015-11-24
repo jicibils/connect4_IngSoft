@@ -20,6 +20,7 @@ CREATE TABLE games(
  id INT(11) NOT NULL AUTO_INCREMENT,
  dateBegin VARCHAR(30),
  dateEnd VARCHAR(30),
+ channel INT,
  grid_id INT,
  player1_id INT,
  player2_id INT,

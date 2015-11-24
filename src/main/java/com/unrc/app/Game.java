@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Game extends Model {
 
+	// Grid b;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -299,10 +300,33 @@ public class Game extends Model {
     	return this.getString("id");
 	}   
 
+	// Retorna un string con los jugadores de un juego
+	public String toStringPlayers(){
+		User u1=User.findFirst("id=?", this.get("player1_id"));
+		User u2=User.findFirst("id=?", this.get("player2_id"));
+		
+		return (u1.toString2() + "   VS   " + u2.toString2());
+	}
+
+	public String toStringPlayer1(){
+		User u1=User.findFirst("id=?", this.get("player1_id"));
+		return u1.toString2();
+
+	}
+
+	public String toStringChannel(){
+		return this.getString("channel");
+	}
+	// Retorna el codigo del juego
+	public String toString2(){
+		return this.getString("id");
+	}
+
 	public Grid getGrid(){
 
 		return g;
 	}
+
 
 }
 

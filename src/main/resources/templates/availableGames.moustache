@@ -1,0 +1,153 @@
+      <!-- availableGames.moustache -->
+
+<head>
+  <script src="jquery-2.1.4.js"></script> 
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+    <style type="text/css">
+      [requiredBoton]{
+        background:black;
+        color: white;
+        border-color: black;
+        box-shadow: 5px 5px 10px black;
+        font-family: Amaze;
+        font-size: 18px;
+        border-radius: 20px 10px; 
+      }
+      [requiredBoton]:hover{
+      font-size: 22px;
+      box-shadow: 5px 5px 10px gray;
+
+      }
+    </style>  
+    <style type="text/css">
+      p{
+        text-shadow: 5px 0px 15px gray;
+      }
+    </style>
+
+    <style type="text/css">
+    #logo{      
+    background:rgb(200,255,200);
+    
+    top:-50%;
+    
+    color:white;
+    text-align:center;
+    font-size: 100px;
+    text-shadow: 0px 0px 10px white ;
+    /*-webkit-text-shadow: 0px 0px 15px white;*/
+      width:500px;
+      height:120px;
+      border: 2px solid white;
+      border-radius: 0px 15px 0px 15px;
+      /*-webkit-border-radius: 0px 15px 0px 15px;*/
+      box-shadow: 0px 0px 15px black;
+      /*-webkit-box-shadow: 0px 0px 15px black;*/
+      font-family: Amaze;
+      font-weight: bold;
+      overflow:hidden;
+      /* First background-image statement is for browsers that do not support gradients. */ 
+
+/*background-image: -moz-radial-gradient(center 45deg, circle, orange 0%, red 100%);*/
+background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black), to(green));
+      transition:width 2s, height 2s;
+      -webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+      -o-transition:width 2s, height 2s, -o-transform 2s;
+      }
+      #logo:hover{
+      width:700px;
+      height:120px;
+      transform:rotate(360deg);
+      -webkit-transform:rotate(360deg);
+      -o-transform:rotate(360deg);
+
+      }
+    </style>
+    <style type="text/css">
+    #names{     
+      color:black;
+      text-shadow: 0px 0px 10px white;
+        text-align:center;
+      font-size: 25px;
+      font-family: Vladimir Script;
+      animation: parpadeo 2s;
+      -webkit-animation: parpadeo 2s;
+      animation-iteration-count:infinite;
+      -webkit-animation-iteration-count:infinite;
+      }
+      @keyframes parpadeo{
+        0%{text-shadow: 0px 0px 5px black;}
+        50%{text-shadow: 0px 0px 25px black;}
+        100%{text-shadow: 0px 0px 5px black;}
+      }
+      @-webkit-keyframes parpadeo{
+        0%{-webkit-text-shadow: 0px 0px 5px black;}
+        50%{-webkit-text-shadow: 0px 0px 25px black;}
+        100%{-webkit-text-shadow: 0px 0px 5px black;}
+      }
+
+    </style>
+    <style type="text/css">
+    p{      
+      color:black;
+      text-shadow: 0px 0px 10px gray;
+        text-align:center;
+      font-size: 15px;
+      font-family: cursive;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <center>
+      <div id="logo">
+        Connect 4
+      </div>
+    </center> 
+    <br>
+    <br>
+
+    <h2 align="center">Juegos disponibles   </h2>
+   <table bgcolor="#grey" align="center" width="50%" border="1" cellspacing="10" cellpadding="10">
+      <tr>
+        <td align="center" width="5%">Channel</td>
+        <td align="center" width="50%">Game</td>
+        <td align="center" width="5%"></td>
+      </tr>
+      {{#games}}
+          <tr>
+            <td bgcolor="#6E6E6E" align="center">
+              {{toStringChannel}}
+            </td>
+            <td bgcolor="#6E6E6E" align="center">
+              {{toStringPlayer1}}
+            </td>
+            <td  bgcolor="#6E6E6E" align="center">
+
+              <form action="/loading" method="POST">
+               <input type=hidden value={{toStringChannel}} name="channel">              
+                <input type=hidden value={{toString2}} name="game">
+                <input type="submit" id="play" value="Jugar" requiredBoton>
+              </form>
+            </td>
+
+          </tr>
+      {{/games}}
+    </table>
+   
+      <form action="/volverConnect4">
+      <p style="text-align:center"><br>
+        <input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+        <input type="hidden" name="user" value={{user}} />
+      </p>
+    </form>
+
+    <div id="names">
+      <i>" Cibils - Dominguez - Bertorello "<i>
+    </div>
+
+  </body>
+</html>
+

@@ -232,6 +232,4 @@ public class Grid extends Model{
 
 	            return table;
             }
-
-
 }

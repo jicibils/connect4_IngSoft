@@ -1,0 +1,263 @@
+<html>
+	
+<head>
+	<script src="jquery-2.1.4.js"></script> 
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+		<style type="text/css">
+			[requiredBoton]{
+				background:black;
+				color: white;
+				border-color: black;
+				box-shadow: 5px 5px 10px black;
+				font-family: Amaze;
+				font-size: 18px;
+				border-radius: 20px 10px; 
+			}
+			[requiredBoton]:hover{
+			font-size: 22px;
+			box-shadow: 5px 5px 10px gray;
+
+			}
+		</style>	
+		<style type="text/css">
+			p{
+				text-shadow: 5px 0px 15px gray;
+			}
+		</style>
+
+		<style type="text/css">
+		#logo{			
+		background:rgb(200,255,200);
+		
+		top:-50%;
+		
+		color:white;
+		text-align:center;
+		font-size: 100px;
+		text-shadow: 0px 0px 10px white ;
+		/*-webkit-text-shadow: 0px 0px 15px white;*/
+			width:500px;
+			height:120px;
+			border: 2px solid white;
+			border-radius: 0px 15px 0px 15px;
+			/*-webkit-border-radius: 0px 15px 0px 15px;*/
+			box-shadow: 0px 0px 15px black;
+			/*-webkit-box-shadow: 0px 0px 15px black;*/
+			font-family: Amaze;
+			font-weight: bold;
+			overflow:hidden;
+			/* First background-image statement is for browsers that do not support gradients. */ 
+
+/*background-image: -moz-radial-gradient(center 45deg, circle, orange 0%, red 100%);*/
+background-image: -webkit-gradient(radial, 50% 90%, 0, 50% 50%, 100, from(black), to(green));
+			transition:width 2s, height 2s;
+			-webkit-transition:width 2s, height 2s, -webkit-transform 2s;
+			-o-transition:width 2s, height 2s, -o-transform 2s;
+			}
+			#logo:hover{
+			width:700px;
+			height:120px;
+			transform:rotate(360deg);
+			-webkit-transform:rotate(360deg);
+			-o-transform:rotate(360deg);
+
+			}
+		</style>
+		<style type="text/css">
+		#names{			
+			color:black;
+			text-shadow: 0px 0px 10px white;
+		    text-align:center;
+			font-size: 25px;
+			font-family: Vladimir Script;
+			animation: parpadeo 2s;
+			-webkit-animation: parpadeo 2s;
+			animation-iteration-count:infinite;
+			-webkit-animation-iteration-count:infinite;
+			}
+			@keyframes parpadeo{
+				0%{text-shadow: 0px 0px 5px black;}
+				50%{text-shadow: 0px 0px 25px black;}
+				100%{text-shadow: 0px 0px 5px black;}
+			}
+			@-webkit-keyframes parpadeo{
+				0%{-webkit-text-shadow: 0px 0px 5px black;}
+				50%{-webkit-text-shadow: 0px 0px 25px black;}
+				100%{-webkit-text-shadow: 0px 0px 5px black;}
+			}
+
+		</style>
+		<style type="text/css">
+		p{			
+			color:black;
+			text-shadow: 0px 0px 10px gray;
+		    text-align:center;
+			font-size: 15px;
+			font-family: cursive;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<form action="/lostConnection" id="desconectado" method="GET"></form>
+	
+			<script type="text/javascript">
+				console.log("{{channel}}");
+				 var ip_address='{{ip}}:3000';
+				 var socket = io.connect(ip_address);
+				 var chn="{{channel}}";
+				 socket.emit('addUser',{{user1}});
+				
+				 socket.on('killConnection',function(msg){
+				 	alert(msg);
+				 	alert(chn);
+				 	if (chn==msg){
+				 		console.log("ENTRO");
+				 		socket.emit('{{channel}}',"killConnection");
+				 		document.forms['desconectado'].submit();
+				 	}
+				 });
+				 socket.on('{{channel}}',function(msg){
+				 	if (msg=='killConnection'){
+				 		socket.emit('{{channel}}',"killConnection");
+				 		document.forms['desconectado'].submit();
+				 	}else{
+							$("#tabla").html(msg);
+				 	}
+				 	});
+					
+			</script>
+
+
+	  		<center>
+			<div id="logo">
+				Connect 4
+			</div>
+		</center>	
+
+		<form>
+			<p> Seleccione Dimension Grilla: 
+			<select name="dimension" requiredBoton>
+			<option value="7x6">7x6 (Default)</option>
+			</select>
+			</p>
+		</form>
+
+		<form>
+			<p> Color ficha {{user1}}: <i>
+			<input type="color" name="colorP1" value="#ff0000" requiredBoton>
+			</p>
+		</form>
+
+
+		<form>
+			<p> Color ficha {{user2}}: 
+			<input type="color" name="colorP2" value="#000dff" requiredBoton>
+			</p>
+		</form>
+
+
+ <!-- ____________________________________________________________________________  -->
+				
+		<form id="form1" action="gameOnline" method="post">
+			<style>
+					table, th, td {
+						border: 2px solid black;
+						border-collapse: collapse;
+					}
+					th, td {
+						padding: 7px;
+						text-align: center;
+					}
+			</style>
+
+			<p style="text-align:center"><br>
+
+					<input type="hidden" name="table" value={{table}} />
+					<input type="hidden" name="turno" value={{turno}} />
+					<input type="hidden" name="game_id" value={{game_id}} />
+					<input type="hidden" name="user1" value={{user1}} />
+					<input type="hidden" name="user2" value={{user2}} />
+					
+	
+				<input type="submit" value="   0   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   1   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   2   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   3   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   4   " name="C" class="button" requiredBoton />
+				<input type="submit" value="   5   " name="C" class="button" requiredBoton />
+				
+			</p>
+		</form>	
+		
+
+
+ <!-- ____________________________________________________________________________  -->
+ 
+
+			<script type="text/javascript">	
+
+			
+				$(".button").on("click", function(evento){									
+					
+					evento.preventDefault();					
+
+					var boton = $(this).val();			
+					
+					var request = $.ajax({
+											data: {"sesion_actual": "{{sesion_actual}}",
+											       "user1": "{{user1}}",
+											       "user2": "{{user2}}",
+											       "game_id": "{{game_id}}",
+							   					   "turno": "{{turno}}",
+							   					   "C": boton},
+											url: "/gameOnline",
+											method: "post",											
+										});
+
+					request.done(function(data){
+						
+						$("html").html(data); 
+												
+					});						
+				});
+		</script>
+
+ <!-- ____________________________________________________________________________  -->
+
+
+   		<p style="text-align:center">
+			<caption>{{user1}} vs {{user2}}</caption>
+			<caption> // Turno: {{turno}}</caption>
+			
+		</p>
+		<div id="tabla">	
+			{{{table}}}
+		</div>
+		<form>		
+			{{{result}}}
+
+		</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Guardar" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value={{us1}} />
+				</p>
+			</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver" name="volverConnect4" requiredBoton>
+					<input type="hidden" name="us1" value={{us1}} />
+				</p>
+			</form>
+
+		</form>
+		<div id="names">
+			<i>" Cibils - Dominguez - Bertorello "<i>
+		</div>
+	</body>
+</html>
